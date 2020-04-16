@@ -44,6 +44,15 @@ public class JBOptions {
     }
 
     /**
+     * Optimize Jimple Body
+     * Perform several optmizations while creating the Jimple body 
+     * (such as copy propagation and dead assignment elimination).
+     */
+    public boolean optimize() {
+        return soot.PhaseOptions.getBoolean(options, "optimize");
+    }
+
+    /**
      * Use Original Names
      * Retain the original names for local variables when the source 
      * includes those names. Otherwise, Soot gives variables generic 

@@ -958,12 +958,13 @@ public class PackManager {
 
       if (produceJimple) {
         Body body = m.retrieveActiveBody();
-
-        getTransform("jb.cp").apply(body); // CopyPropagator
-        getTransform("jb.cbf").apply(body); // ConditionalBranchFolder
-        getTransform("jb.uce").apply(body); // UnreachableCodeEliminator
-        getTransform("jb.dae").apply(body); // DeadAssignmentEliminator
-        getTransform("jb.cp-ule").apply(body); // UnusedLocalEliminator
+        if (shouldOptimizeJimpleBody()) {
+          getTransform("jb.cp").apply(body); // CopyPropagator
+          getTransform("jb.cbf").apply(body); // ConditionalBranchFolder
+          getTransform("jb.uce").apply(body); // UnreachableCodeEliminator
+          getTransform("jb.dae").apply(body); // DeadAssignmentEliminator
+          getTransform("jb.cp-ule").apply(body); // UnusedLocalEliminator
+        }
         getPack("jtp").apply(body);
 
         if (Options.v().validate()) {
@@ -1017,6 +1018,10 @@ public class PackManager {
         G.v().SootMethodAddedByDava = false;
       }
     } // end if produceDava
+  }
+
+  private boolean shouldOptimizeJimpleBody() {
+    return PhaseOptions.v().getPhaseOptions("jb").getOrDefault("optimize", "true").equals("true");
   }
 
   public BafBody convertJimpleBodyToBaf(SootMethod m) {

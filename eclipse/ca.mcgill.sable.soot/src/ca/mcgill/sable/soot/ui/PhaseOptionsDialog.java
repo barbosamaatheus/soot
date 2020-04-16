@@ -231,11 +231,13 @@ public class PhaseOptionsDialog extends AbstractOptionsDialog implements Selecti
 
 		makeNewEnableGroup("jb");
 		addToEnableGroup("jb", getjbenabled_widget(), "enabled");
+		addToEnableGroup("jb", getjboptimize_widget(), "optimize");
 		addToEnableGroup("jb", getjbuse_original_names_widget(), "use-original-names");
 		addToEnableGroup("jb", getjbpreserve_source_annotations_widget(), "preserve-source-annotations");
 		addToEnableGroup("jb", getjbstabilize_local_names_widget(), "stabilize-local-names");
 		addToEnableGroup("jb", getjbmodel_lambdametafactory_widget(), "model-lambdametafactory");
 		getjbenabled_widget().getButton().addSelectionListener(this);
+		getjboptimize_widget().getButton().addSelectionListener(this);
 		getjbuse_original_names_widget().getButton().addSelectionListener(this);
 		getjbpreserve_source_annotations_widget().getButton().addSelectionListener(this);
 		getjbstabilize_local_names_widget().getButton().addSelectionListener(this);
@@ -1444,6 +1446,12 @@ public class PhaseOptionsDialog extends AbstractOptionsDialog implements Selecti
 
 		if (boolRes != defBoolRes) {
 			getConfig().put(getjbenabled_widget().getAlias(), new Boolean(boolRes));
+		}
+		boolRes = getjboptimize_widget().getButton().getSelection();
+		defBoolRes = true;
+
+		if (boolRes != defBoolRes) {
+			getConfig().put(getjboptimize_widget().getAlias(), new Boolean(boolRes));
 		}
 		boolRes = getjbuse_original_names_widget().getButton().getSelection();
 		defBoolRes = false;
@@ -5347,6 +5355,16 @@ public class PhaseOptionsDialog extends AbstractOptionsDialog implements Selecti
 	
 	public BooleanOptionWidget getjbenabled_widget() {
 		return jbenabled_widget;
+	}	
+	
+	private BooleanOptionWidget jboptimize_widget;
+	
+	private void setjboptimize_widget(BooleanOptionWidget widget) {
+		jboptimize_widget = widget;
+	}
+	
+	public BooleanOptionWidget getjboptimize_widget() {
+		return jboptimize_widget;
 	}	
 	
 	private BooleanOptionWidget jbuse_original_names_widget;
@@ -9831,6 +9849,17 @@ public class PhaseOptionsDialog extends AbstractOptionsDialog implements Selecti
 		}
 
 		setjbenabled_widget(new BooleanOptionWidget(editGroupjb, SWT.NONE, new OptionData("Enabled", "p phase-option", "jb","enabled", "\n", defaultBool)));
+
+		defKey = "p phase-option"+" "+"jb"+" "+"optimize";
+		defKey = defKey.trim();
+
+		if (isInDefList(defKey)) {
+			defaultBool = getBoolDef(defKey);	
+		} else {
+			defaultBool = true;
+		}
+
+		setjboptimize_widget(new BooleanOptionWidget(editGroupjb, SWT.NONE, new OptionData("Optimize Jimple Body", "p phase-option", "jb","optimize", "\nPerform several optmizations while creating the Jimple body \n(such as copy propagation and dead assignment elimination).", defaultBool)));
 
 		defKey = "p phase-option"+" "+"jb"+" "+"use-original-names";
 		defKey = defKey.trim();
