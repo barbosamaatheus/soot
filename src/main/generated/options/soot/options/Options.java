@@ -1888,6 +1888,7 @@ public class Options extends OptionsBase {
                     + "\nJimple Body Creation creates a JimpleBody for each input method, \nusing either asm, to read .class files, or the jimple parser, to \nread .jimple files."
                     + "\n\nRecognized options (with default values):\n"
                     + padOpt("enabled (true)", "")
+                    + padOpt("optimize (true)", "")
                     + padOpt("use-original-names (false)", "")
                     + padOpt("preserve-source-annotations (false)", "")
                     + padOpt("stabilize-local-names (false)", "")
@@ -2838,6 +2839,7 @@ public class Options extends OptionsBase {
         if (phaseName.equals("jb"))
             return String.join(" ", 
                     "enabled",
+                    "optimize",
                     "use-original-names",
                     "preserve-source-annotations",
                     "stabilize-local-names",
@@ -3583,6 +3585,7 @@ public class Options extends OptionsBase {
         if (phaseName.equals("jb"))
             return ""
                     + "enabled:true "
+                    + "optimize:true "
                     + "use-original-names:false "
                     + "preserve-source-annotations:false "
                     + "stabilize-local-names:false "

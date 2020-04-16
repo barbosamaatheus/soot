@@ -1474,6 +1474,17 @@
                     <short_desc/>
                     <long_desc/>
                 </boolopt>
+		<boolopt>
+                    <name>Optimize Jimple Body</name>
+                    <alias>optimize</alias>
+                    <default>true</default>
+                    <short_desc/>
+                    <long_desc>
+                      Perform several optmizations while creating
+		      the Jimple body (such as copy propagation and
+		      dead assignment elimination).
+                    </long_desc>
+                </boolopt>
                 <boolopt>
                     <name>Use Original Names</name>
                     <alias>use-original-names</alias>
