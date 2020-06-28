@@ -488,10 +488,11 @@
         </dependency>
     </dependencies>
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </snapshotRepository>
+      <repository>
+	<id>github</id>
+	<name>spgroup</name>
+	<url>https://maven.pkg.github.com/spgroup/soot</url>
+      </repository>
     </distributionManagement>
     <profiles>
         <profile>
