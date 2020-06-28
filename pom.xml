@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.soot-oss</groupId>
     <artifactId>soot</artifactId>
-    <name>Soot - a J*va Optimization Framework</name>
+    <name>Soot - a Java Optimization Framework</name>
     <version>4.5.0</version>
-    <description>A Java Optimization Framework</description>
+    <description>A Java Optimization Framework. This specific release turns off some optmization in the jimple body creation pack</description>
     <url>https://soot-oss.github.io/soot</url>
     <organization>
         <name>Soot OSS</name>
@@ -598,10 +598,11 @@
         </repository>
     </repositories>
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
+      <repository>
+        <id>github</id>
+        <name>spgroup</name>
+        <url>https://maven.pkg.github.com/spgroup/soot</url>
+      </repository>
     </distributionManagement>
     <profiles>
         <profile>
