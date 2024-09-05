@@ -136,7 +136,9 @@ public class SharedInitializationLocalSplitter extends BodyTransformer {
     }
 
     CopyPropagator.v().transform(body);
-    ConstantPropagatorAndFolder.v().transform(body);
+    // ConstantPropagatorAndFolder.v().transform(body);
+
+
 
     DexNullThrowTransformer.v().transform(body);
     DexNullArrayRefTransformer.v().transform(body);
@@ -146,7 +148,7 @@ public class SharedInitializationLocalSplitter extends BodyTransformer {
     DexNullThrowTransformer.v().transform(body);
     DexNullArrayRefTransformer.v().transform(body);
 
-    DeadAssignmentEliminator.v().transform(body);
+    //DeadAssignmentEliminator.v().transform(body);
     CopyPropagator.v().transform(body);
 
     final ExceptionalUnitGraph graph
